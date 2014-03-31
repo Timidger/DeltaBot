@@ -224,23 +224,23 @@ class TestAncestorPoints(DeltaBotTestCase):
 class TestIsCommentTooShort(DeltaBotTestCase):
     def test_no_comment(self):
         no_comment = Comment(body="")
-        result = self.bot.is_comment_too_short(no_comment)
-        self.assertTrue(result, "is_comment_too_short() returns False with empty comment")
+        result = self.bot.messages.is_comment_too_short(no_comment)
+        self.assertTrue(result, "messages.is_comment_too_short() returns False with empty comment")
 
     def test_short_comment(self):
         short_comment = Comment(body="a"*(self.bot.minimum_comment_length-1))
-        result = self.bot.is_comment_too_short(short_comment)
-        self.assertTrue(result, "is_comment_too_short() returns False with short comment")
+        result = self.bot.messages.is_comment_too_short(short_comment)
+        self.assertTrue(result, "messages.is_comment_too_short() returns False with short comment")
 
     def test_good_comment(self):
         good_comment = Comment(body="a"*self.bot.minimum_comment_length)
-        result = self.bot.is_comment_too_short(good_comment)
-        self.assertFalse(result, "is_comment_too_short() returns True with good comment")
+        result = self.bot.messages.is_comment_too_short(good_comment)
+        self.assertFalse(result, "messages.is_comment_too_short() returns True with good comment")
 
     def test_long_comment(self):
         long_comment = Comment(body="a"*(self.bot.minimum_comment_length*10))
-        result = self.bot.is_comment_too_short(long_comment)
-        self.assertFalse(result, "is_comment_too_short() returns True with long comment")
+        result = self.bot.messages.is_comment_too_short(long_comment)
+        self.assertFalse(result, "messages.is_comment_too_short() returns True with long comment")
 
 if __name__ == '__main__':
     unittest.main()
